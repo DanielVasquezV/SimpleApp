@@ -18,9 +18,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'external_id', 
+        'external_auth',
         'name',
+        'given_name',
+        'family_name',
         'email',
+        'avatar',
+        'email_verified',
         'password',
+        'login_count',
+        'last_login'
     ];
 
     /**
@@ -38,11 +46,32 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'email_verified' => 'boolean',
+            'last_login' => 'datetime',
         ];
+    }
+
+    /**
+    * Method to encrypt the password when its needed
+    */
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
+
+    /**
+    * Increment the login count
+    */
+    public function incrementLoginCount()
+    {
+        $this->increment('login_count');
+        $this->update(['last_login' => now()->toIso8601String()]);
     }
 }
