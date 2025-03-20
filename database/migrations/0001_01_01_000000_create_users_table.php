@@ -22,8 +22,10 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->boolean('email_verified')->default(false);
             $table->string('password', 255)->nullable();
-            $table->integer('login_count')->default(1);
+            $table->string('workspace_domain')->nullable();
+            $table->string('locale')->nullable();   
             $table->timestamp('last_login')->nullable()->useCurrent();
+            $table->integer('login_count')->default(0);
             $table->timestamps(); // created_at and updated_at columns
         });
 

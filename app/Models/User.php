@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,7 +29,10 @@ class User extends Authenticatable
         'email_verified',
         'password',
         'login_count',
-        'last_login'
+        'workspace_domain',
+        'locale',
+        'last_login',
+        'login_count'
     ];
 
     /**
@@ -67,11 +71,19 @@ class User extends Authenticatable
     }
 
     /**
-    * Increment the login count
+    * Set the last login date
     */
     public function incrementLoginCount()
     {
         $this->increment('login_count');
-        $this->update(['last_login' => now()->toIso8601String()]);
+        $this->update(['last_login' => now('UTC')->toIso8601String()]);
+    }
+
+    /**
+    * Relations
+    */
+    public function logins()
+    {
+        return $this->hasMany(Login::class, 'user_id');
     }
 }
