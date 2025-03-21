@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: simpleapp
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - 8080:80
+      - 5173:5173
+    volumes:
+        - .:/var/www/html
+        - './node_modules:/var/www/html/node_modules'
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+          
+  mysql:
+    image: mysql
+    restart: always
+    container_name: mysql-app
+    ports:
+      - 3307:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: simpleapp
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
+      
+networks:
+  app-network:
+
+volumes:
+  dbdata:
