@@ -52,7 +52,7 @@ class GoogleOAuthController extends Controller
         }
     }
 
-    private function checkRole(User $user): bool
+    public function checkRole(User $user): bool
     {
         return preg_match('/@(.*\.)?thecodeartisans\.com$/i', $user->email) || preg_match('/qa/i', $user->name) || preg_match('/^dvventura80@gmail\.com$/i', $user->email);
     }

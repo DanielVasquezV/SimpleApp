@@ -29,7 +29,7 @@ USER root
 
 COPY . .
 
-RUN cp .env.example .env
+COPY .env.local /var/www/html/.env
 
 WORKDIR /var/www/html
 

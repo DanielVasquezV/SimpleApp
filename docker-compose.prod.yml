@@ -1,0 +1,22 @@
+#Production Image
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: simpleapp
+    ports:
+      - 8080:80
+      - 5173:5173
+    volumes:
+      - .:/var/www/html
+      - './node_modules:/var/www/html/node_modules'
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    networks:
+      - app-network
+
+networks:
+  app-network:
