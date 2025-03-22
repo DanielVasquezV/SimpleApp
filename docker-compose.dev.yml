@@ -11,11 +11,15 @@ services:
     ports:
       - 8080:80
       - 5173:5173
-    volumes:
-        - .:/var/www/html
-        - './node_modules:/var/www/html/node_modules'
+    # volumes:
+    #     - .:/var/www/html
+    #     - './node_modules:/var/www/html/node_modules'
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      - MYSQL_HOST=mysql
+      - MYSQL_DATABASE=simpleapp
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
     depends_on:
       - mysql
     networks:

@@ -25,12 +25,12 @@ class GoogleOAuthControllerTest extends TestCase
         $user = User::factory()->create([
             'external_id' => '123456789',
             'external_auth' => 'google',
-            'email' => 'usuario@example.com',
+            'email' => 'user@gmail.com',
         ]);
 
         $googleUser = Mockery::mock(\Laravel\Socialite\Two\User::class);
         $googleUser->shouldReceive('getId')->andReturn('123456789');
-        $googleUser->shouldReceive('getEmail')->andReturn('exmple@mail.com');
+        $googleUser->shouldReceive('getEmail')->andReturn('user@gmail.com');
         $googleUser->shouldReceive('getName')->andReturn('Joe Doe');
         $googleUser->shouldReceive('getAvatar')->andReturn('http://example.com/avatar.jpg');
         $googleUser->shouldReceive('getRaw')->andReturn([
@@ -38,14 +38,14 @@ class GoogleOAuthControllerTest extends TestCase
             'family_name' => 'Doe',
             'verified_email' => true,
             'hd' => 'gmail.com',
-            'locale' => 'es',
+            // 'locale' => 'es',
         ]);
     
         Socialite::shouldReceive('driver->user')->once()->andReturn($googleUser);
     
         $this->get('/auth/google/callback');
     
-        $this->actingAs(User::where('email', 'usuario@example.com')->first());
+        $this->actingAs(User::where('email', 'user@gmail.com')->first());
         $this->assertAuthenticated();
     }
 }
