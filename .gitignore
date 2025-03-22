@@ -8,7 +8,7 @@
 /vendor
 .env
 #.env.backup
-docker-compose.prod.yaml
+docker-compose.prod.yml
 Makefile
 .env.production
 .phpactor.json
