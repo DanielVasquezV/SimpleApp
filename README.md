@@ -85,6 +85,21 @@ This will enable fast reloading and optimized asset handling during development.
 
 ---
 
+## Running Tests
+
+This project includes unit and feature tests using [PHPUnit](https://phpunit.de/). To execute the test suite, run the following command:
+
+```sh
+php artisan test
+```
+
+To run a specific test, use:
+
+```sh
+php artisan test --filter=TestClassName
+```
+There are two tests: one called ```GoogleOAuthControllerTest```, which verifies the login of an existing user using the Google OAuth API, and another called ```CheckRoleTest```, which tests the function that determines whether the user is an admin based on specific conditions. Therefore, you can directly replace 'TestClassName' in the command with the name of the tests described.
+
 ## Docker
 
 If you want to run the application locally using Docker, make sure you have Docker Engine running on your computer, then go to the project terminal and execute the following commands:
@@ -103,4 +118,12 @@ docker-compose -f docker-compose.local.yml up -d
 
 This will create the application along with its MySQL database on a container to access just go to ```http://localhost:8080/``` on your browser
 
+Additionally, you can work with volumes in the application image, which, by linking the local source code directory to the corresponding directory within the container, allows any changes made to the code to be automatically reflected within the container. This enables more efficient development, as you don't need to rebuild the image or restart the container every time you make changes.
+
+To set this, go to ```/docker-compose.dev.yml``` file and uncomment the volumes section (Note: If you use volumes, make sure your ```.env``` file is properly configured with the database settings. You can copy the contents of the ```.env.local``` file to the ```.env``` file for development purposes.):
+```env
+     volumes:
+         - .:/var/www/html
+         - './node_modules:/var/www/html/node_modules'
+```
 ---
