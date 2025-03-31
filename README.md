@@ -107,13 +107,13 @@ If you want to run the application locally using Docker, make sure you have Dock
 ### Build the Docker images
 
 ```sh
-docker-compose -f docker-compose.local.yml build
+docker-compose -f docker-compose.dev.yml build
 ```
 
 ### Start the containers
 
 ```sh
-docker-compose -f docker-compose.local.yml up -d
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
 This will create the application along with its MySQL database on a container to access just go to ```http://localhost:8080/``` on your browser
