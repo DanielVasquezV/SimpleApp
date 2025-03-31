@@ -4,7 +4,7 @@ This application allows authentication with Google OAuth and an administration p
 
 ## 🚀 App URL
 
-🔗 **Access the application here: (Deployed using Google Cloud Run and Google Cloud SQL)** [SimpleApp](https://simpleapp-1080483179099.us-central1.run.app)
+🔗 **Access the application here: (Deployed using Google Cloud Run and Google Cloud SQL)** [SimpleApp](https://simpleapp-233965169733.us-central1.run.app/)
 
 ## Prerequisites
 
