@@ -1,10 +1,10 @@
-# Laravel 12 - SimpleApp
+# Laravel 12 - Simple Google OAuth
 This repository contains an application based on Laravel 12, a modern PHP framework. The project uses [Vite](https://vitejs.dev/) as the frontend asset bundler, providing a fast and optimized development experience.
 This application allows authentication with Google OAuth and an administration panel with user information that is visible depending on the authenticated user.
 
-## 🚀 App URL
+<!---## App URL--->
 
-🔗 **Access the application here: (Deployed using Google Cloud Run and Google Cloud SQL)** [SimpleApp](https://simpleapp-233965169733.us-central1.run.app/)
+<!---**Access the application here: (Deployed using Google Cloud Run and Google Cloud SQL)** [SimpleApp](https://simpleapp-233965169733.us-central1.run.app/)--->
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Make sure you have the following dependencies installed:
 - [Composer](https://getcomposer.org/)
 - [Node.js and npm](https://nodejs.org/)
 - [MySQL](https://www.mysql.com/)
-- [Docker and Docker Compose](https://www.docker.com/get-started)
+- [Docker](https://www.docker.com/get-started)
 
 ---
 
@@ -127,3 +127,4 @@ To set this, go to ```/docker-compose.dev.yml``` file and uncomment the volumes 
          - './node_modules:/var/www/html/node_modules'
 ```
 ---
+
